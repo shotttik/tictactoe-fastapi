@@ -1,33 +1,37 @@
 from pydantic import BaseModel
 from typing import List
 
-class HistoryBase(BaseModel):
+class HistoryBaseSchema(BaseModel):
     type: str
     position: int
     result: bool
     
 
-class HistoryCreate(HistoryBase):
+class HistoryCreateSchema(HistoryBaseSchema):
     pass
 
-class History(HistoryBase):
+class HistorySchema(HistoryBaseSchema):
     id: int
     game_id: int
     
     class Config:
         orm_mode = True
 
-class GameBase(BaseModel):
-    board: List[int] = []
-    finished: bool
+class GameBaseSchema(BaseModel):
+    board: List[int] = [
+        "","","",
+        "","","",
+        "","","",
+        ]
+    finished: bool = False
 
-class GameCreate(GameBase):
+class GameCreateSchema(GameBaseSchema):
     pass
 
 
-class Game(GameBase):
+class GameSchema(GameBaseSchema):
     id: int
-    histories: List[History] = []
+    histories: List[HistorySchema] = []
     
     class Config:
         orm_mode = True

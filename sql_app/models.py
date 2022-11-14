@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY
 from .database import Base
 
-class Game(Base):
+class GameModel(Base):
     __tablename__ = "games"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -12,7 +12,7 @@ class Game(Base):
     
     histories = relationship("histories", back_populates="game")
 
-class History(Base):
+class HistoryModel(Base):
     __tablename__ = "histories"
     
     id = Column(Integer, primary_key=True, index=True)
