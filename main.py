@@ -1,11 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends
 from sql_app.models import Base
-from sql_app.schemas import GameSchema, GameCreateSchema
+from sql_app.schemas import GameSchema, GameCreateSchema, HistorySchema, HistoryCreateSchema
 from sql_app.database import SessionLocal, engine
-from sql_app.crud import create_game
+from sql_app.crud import create_game, get_game
 
 from sqlalchemy.orm import Session
-from fastapi import Depends
 
 
 Base.metadata.create_all(bind=engine)
@@ -29,8 +28,17 @@ def start(game: GameCreateSchema, db: Session = Depends(get_db)):
     return {"game_id": 0}
 
 
-@app.get("/move/{game_id}")
-def move(game_id):
+@app.post("/move/{game_id}")
+def move(game_id, history: HistoryCreateSchema,db: Session = Depends(get_db)):
+    db_game = get_game(db=db, game_id=game_id)
+    if not db_game:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    db_game.board[history.position] = history.type
+    db.add(db_game)
+    db.commit()
+    db.refresh(db_game)
+    
     return {"result": "success"}
 
 
