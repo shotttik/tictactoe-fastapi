@@ -18,7 +18,7 @@ class HistorySchema(HistoryBaseSchema):
         orm_mode = True
 
 class GameBaseSchema(BaseModel):
-    board: List[int] = [
+    board: List = [
         "","","",
         "","","",
         "","","",

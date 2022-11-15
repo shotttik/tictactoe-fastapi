@@ -12,24 +12,28 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-async def get_db():
+def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
 
-@app.post("/start", response_model=GameSchema)
-async def start(game: GameCreateSchema, db: Session = Depends(get_db)):
-    db_game = create_game(db=db, game=game)
+'''
+@app.post("/start", response_model=GameSchema) 
+ERROR -> field required (type=value_error.missing)
+'''
+@app.post("/start")
+def start(game: GameCreateSchema, db: Session = Depends(get_db)):
+    create_game(db=db, game=game)    
     return {"game_id": 0}
 
 
 @app.get("/move/{game_id}")
-async def move(game_id):
+def move(game_id):
     return {"result": "success"}
 
 
 @app.get("/check/{game_id}")
-async def check(game_id):
+def check(game_id):
     return {"game": "finished", "winner": None}
