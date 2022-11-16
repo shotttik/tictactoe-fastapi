@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 
 from .models import GameModel, HistoryModel
-from .schemas import GameCreateSchema, HistoryCreateSchema, HistorySchema
+from .schemas import GameCreateSchema, HistorySchema
+
 
 def create_game(db: Session, game: GameCreateSchema):
     db_game = GameModel(board=game.board, finished=game.finished)
@@ -15,9 +16,9 @@ def get_game(db: Session, game_id: int):
     return db.query(GameModel).filter(GameModel.id == game_id).first()
 
 
-def create_user_item(db: Session, item: HistoryCreateSchema, game_id: int):
-    db_item = HistoryModel(**item.dict(), game_id=game_id)
-    db.add(db_item)
+def make_move(db: Session, db_game: Session, history: HistorySchema):
+    db_game.board[history.position] = 0 if history.type == "X" else 1
+    db_history = HistoryModel(**history.dict(), game_id=db_game.id)
+    db.add(db_history)
     db.commit()
-    db.refresh(db_item)
-    return db_item
+    db.refresh(db_game)
