@@ -25,7 +25,6 @@ class GameBaseSchema(BaseModel):
         None, None, None,
         None, None, None,
     ]
-    finished: bool = False
 
 
 class GameCreateSchema(GameBaseSchema):
@@ -34,6 +33,9 @@ class GameCreateSchema(GameBaseSchema):
 
 class GameSchema(GameBaseSchema):
     id: int
+    finished: bool = False
+    winner: Union[int, None] = None
+    last_move: Union[int, None] = None
     histories: List[HistorySchema] = []
 
     class Config:
