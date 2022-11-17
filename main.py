@@ -2,11 +2,12 @@ from fastapi import FastAPI, HTTPException, Depends
 from sql_app.models import Base
 from sql_app.schemas import GameCreateSchema, HistorySchema, HistoryCreateSchema
 from sql_app.database import SessionLocal, engine
-from sql_app.crud import create_game, get_game, make_move
-from sql_app.utils import error_message
+from sql_app.crud import create_game, get_game, make_move, get_history
+from sql_app.utils import error_message, draw_board
 
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
+import json
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -71,8 +72,17 @@ async def check(game_id, db: Session = Depends(get_db)):
         return JSONResponse(
             error_message("Game not found"), 404)
 
+    board = draw_board(db_game.board)
+
     if db_game.finished == True:
         return JSONResponse(
             {"game": "finished", "winner": db_game.winner}, 200)
 
+    # return {"game": "in_progress", "board": board}
     return {"game": "in_progress"}
+
+
+@app.post("/history")
+async def history(db: Session = Depends(get_db)):
+    history = get_history(db=db)
+    return JSONResponse({'data': history}, 200)

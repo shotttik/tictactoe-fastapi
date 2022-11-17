@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.mutable import MutableList
 from .database import Base
+from typing import TypedDict
 
 
 class GameModel(Base):
@@ -16,6 +17,16 @@ class GameModel(Base):
 
     histories = relationship("HistoryModel", back_populates="game")
 
+    @property
+    def serialize(self):
+        return {"id": self.id,
+                "board": self.board,
+                "finished": self.finished,
+                "winner": self.winner,
+                "last_move": self.last_move,
+                "histories": [dict(history.serialize) for history in self.histories]
+                }
+
 
 class HistoryModel(Base):
     __tablename__ = "histories"
@@ -26,3 +37,9 @@ class HistoryModel(Base):
     game_id = Column(Integer, ForeignKey("games.id"))
 
     game = relationship("GameModel", back_populates="histories")
+
+    @property
+    def serialize(self):
+        return {"id": self.id,
+                "type": self.type,
+                "position": self.position}

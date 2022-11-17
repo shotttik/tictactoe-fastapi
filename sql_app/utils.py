@@ -20,3 +20,18 @@ def check_game_finished(board: list):
 
 def error_message(text: str) -> dict:
     return {"result": "error", "error_code": text}
+
+
+def draw_board(db_board):
+    board = """"""
+    for i, t in enumerate(db_board):
+        new_lines = [2, 5]
+        if t == 0:
+            board += "X |"
+        elif t == 1:
+            board += "Y |"
+        else:
+            board += "  |"
+        if i in new_lines:
+            board += "\n"
+    return board

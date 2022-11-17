@@ -30,3 +30,8 @@ def make_move(db: Session, db_game: Session, history: HistorySchema):
     db.add(db_history)
     db.commit()
     db.refresh(db_game)
+
+
+def get_history(db: Session):
+    games_db = db.query(GameModel).order_by("id").all()
+    return [game.serialize for game in games_db]

@@ -1,0 +1,193 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "board": [
+                0,
+                0,
+                0,
+                null,
+                1,
+                null,
+                1,
+                null,
+                null
+            ],
+            "finished": true,
+            "winner": 0,
+            "last_move": 0,
+            "histories": [
+                {
+                    "id": 1,
+                    "type": 0,
+                    "position": 0
+                },
+                {
+                    "id": 2,
+                    "type": 1,
+                    "position": 4
+                },
+                {
+                    "id": 3,
+                    "type": 0,
+                    "position": 2
+                },
+                {
+                    "id": 4,
+                    "type": 1,
+                    "position": 6
+                },
+                {
+                    "id": 5,
+                    "type": 0,
+                    "position": 1
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "board": [
+                0,
+                null,
+                null,
+                1,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "finished": false,
+            "winner": null,
+            "last_move": 1,
+            "histories": [
+                {
+                    "id": 6,
+                    "type": 0,
+                    "position": 0
+                },
+                {
+                    "id": 10,
+                    "type": 1,
+                    "position": 3
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "board": [
+                0,
+                null,
+                null,
+                null,
+                null,
+                null,
+                1,
+                null,
+                null
+            ],
+            "finished": false,
+            "winner": null,
+            "last_move": 1,
+            "histories": [
+                {
+                    "id": 7,
+                    "type": 0,
+                    "position": 0
+                },
+                {
+                    "id": 15,
+                    "type": 1,
+                    "position": 6
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "board": [
+                0,
+                null,
+                null,
+                1,
+                null,
+                null,
+                0,
+                null,
+                null
+            ],
+            "finished": false,
+            "winner": null,
+            "last_move": 0,
+            "histories": [
+                {
+                    "id": 8,
+                    "type": 0,
+                    "position": 0
+                },
+                {
+                    "id": 9,
+                    "type": 1,
+                    "position": 3
+                },
+                {
+                    "id": 14,
+                    "type": 0,
+                    "position": 6
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "board": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                null
+            ],
+            "finished": false,
+            "winner": null,
+            "last_move": 0,
+            "histories": [
+                {
+                    "id": 13,
+                    "type": 0,
+                    "position": 6
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "board": [
+                null,
+                null,
+                null,
+                1,
+                null,
+                null,
+                0,
+                null,
+                null
+            ],
+            "finished": false,
+            "winner": null,
+            "last_move": 0,
+            "histories": [
+                {
+                    "id": 11,
+                    "type": 1,
+                    "position": 3
+                },
+                {
+                    "id": 12,
+                    "type": 0,
+                    "position": 6
+                }
+            ]
+        }
+    ]
+}
