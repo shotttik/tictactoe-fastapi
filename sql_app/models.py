@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.mutable import MutableList
 from .database import Base
-from typing import TypedDict
 
 
 class GameModel(Base):

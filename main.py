@@ -7,7 +7,6 @@ from sql_app.utils import error_message, draw_board
 
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
-import json
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
